@@ -64,15 +64,6 @@ def main():
 if __name__ == "__main__":
     main()
 
-canvas = Canvas()
-canvas.add_form(Circle(Coordinate(100, 100), 50))
-canvas.add_form(Rectangle(Coordinate(200, 250), 45, 50, 50))
-canvas.add_form(Square(Coordinate(300, 350), 30, 75))
-
-#canvas.add_form(Circle(Coordinate(200, 150), 50))
-#canvas.add_form(Rectangle(Coordinate(400, 250), 45, 100, 50))
-#canvas.add_form(Square(Coordinate(500, 350), 30, 75))
-
 
 
 
