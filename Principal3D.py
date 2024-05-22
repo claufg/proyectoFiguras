@@ -1,33 +1,27 @@
-from Circle3D import Circle3D
-from Square3D import Square3D
-from Rectangle3D import Rectangle3D
-from Canvas import Canvas
-from Exporter import CanvasJSONExport, CanvasXMLExport, CanvasTkinterExport
+from Circle import Circle
+from Square import Square
+from Rectangle import Rectangle
+import matplotlib.pyplot as plt
 
-def main():
-    circle = Circle3D(5, [1, 2, 3])
-    square = Square3D(4, [4, 5, 6])
-    rectangle = Rectangle3D(3, 6, [7, 8, 9])
+# Crear instancias de las figuras
+circle = Circle(center=(0, 0), radius=5)
+square = Square(center=(0, 0), side=5)
+rectangle = Rectangle(center=(0, 0), length=10, width=5)
 
-    canvas = Canvas()
-    canvas.add_shape(circle)
-    canvas.add_shape(square)
-    canvas.add_shape(rectangle)
+# Plotear figuras en 3D
+fig = plt.figure(figsize=(18, 6))
 
-    print(circle)
-    print(square)
-    print(rectangle)
+# Circle
+ax1 = fig.add_subplot(131, projection='3d')
+circle.plot_3d(ax1)
 
-    canvas.draw()
+# Square
+ax2 = fig.add_subplot(132, projection='3d')
+square.plot_3d(ax2)
 
-    json_exporter = CanvasJSONExport()
-    json_exporter.export(canvas.shapes, 'shapes.json')
+# Rectangle
+ax3 = fig.add_subplot(133, projection='3d')
+rectangle.plot_3d(ax3)
 
-    xml_exporter = CanvasXMLExport()
-    xml_exporter.export(canvas.shapes, 'shapes.xml')
+plt.show()
 
-    tkinter_exporter = CanvasTkinterExport()
-    tkinter_exporter.export(canvas.shapes, 'shapes')
-
-if __name__ == "__main__":
-    main()
