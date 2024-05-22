@@ -1,17 +1,20 @@
-from Rectangle3D import Rectangle3D
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 
-class Square3D(Rectangle3D):
-    def __init__(self, side_length, position=None, angles=None):
-        super().__init__(side_length, side_length, position, angles)
+class Square(Form2D):
+    # Código existente...
 
-    def get_side_length(self):
-        return self.width
-
-    def set_side_length(self, side_length):
-        self.width = self.height = side_length
-
-    def __eq__(self, other):
-        return isinstance(other, Square3D) and super().__eq__(other)
-
-    def __str__(self):
-        return f"{super().__str__()}"
+    def plot_3d(self, ax=None):
+        if ax is None:
+            fig = plt.figure()
+            ax = fig.add_subplot(111, projection='3d')
+        points = np.array([[0, 0, 0], [0, self.side, 0], [self.side, self.side, 0], [self.side, 0, 0]])
+        verts = [list(zip(points[:, 0], points[:, 1], points[:, 2]))]
+        ax.add_collection3d(Poly3DCollection(verts, alpha=.25, linewidths=1, edgecolors='r'))
+        ax.set_xlabel('X')
+        ax.set_ylabel('Y')
+        ax.set_zlabel('Z')
+        ax.set_title('3D Representation of Square')
+        ax.set_xlim([0, self.side])
+        ax.set_ylim([0, self.side])
+        ax.set_zlim([0, self.side])
