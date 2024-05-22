@@ -1,26 +1,23 @@
-from Form3D import Form3D
+from Form2D import Form2D
 
-class AbstractPolygon(Form3D):
-    def __init__(self, position=None, angles=None):
+class AbstractPolygon(Form2D):
+    def __init__(self, position=None, angle=0.0):
         super().__init__(position)
-        if angles is None:
-            angles = [0.0, 0.0, 0.0]
-        if not all(0.0 <= angle < 360.0 for angle in angles):
-            raise ValueError("Angles must be in [0.0, 360.0)")
-        self.angles = np.array(angles)
+        if not (0.0 <= angle < 360.0):
+            raise ValueError("Angle must be in [0.0, 360.0)")
+        self.angle = angle
 
-    def get_angles(self):
-        return self.angles
+    def get_angle(self):
+        return self.angle
 
     def rotate(self, degrees):
-        if len(degrees) != 3:
-            raise ValueError("Rotation must be a 3D vector")
-        if not all(-360.0 < degree < 360.0 for degree in degrees):
-            raise ValueError("Rotation degrees must be in (-360.0, 360.0)")
-        self.angles = (self.angles + np.array(degrees)) % 360.0
+        if not (-360.0 < degrees < 360.0):
+            raise ValueError("Rotation must be in (-360.0, 360.0)")
+        self.angle = (self.angle + degrees) % 360.0
 
     def __eq__(self, other):
-        return isinstance(other, AbstractPolygon) and super().__eq__(other) and np.array_equal(self.angles, other.angles)
+        return isinstance(other, AbstractPolygon) and super().__eq__(other) and self.angle == other.angle
 
     def __str__(self):
-        return f"{super().__str__()},angles={self.angles}"
+        return f"{super().__str__()},angle={self.angle}"
+
