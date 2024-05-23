@@ -4,7 +4,7 @@ class AbstractPolygon(Form2D):
     def __init__(self, position=None, angle=0.0):
         super().__init__(position)
         if not (0.0 <= angle < 360.0):
-            raise ValueError("Angle must be in [0.0, 360.0)")
+            raise ValueError("El ángulo debe estar entre [0.0, 360.0)")
         self.angle = angle
 
     def get_angle(self):
