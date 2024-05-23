@@ -4,7 +4,7 @@ class Square(AbstractPolygon):
     def __init__(self, position=None, angle=0.0, side=0):
         super().__init__(position, angle)
         if side < 0:
-            raise ValueError("Side cannot be negative")
+            raise ValueError("El lado no puede ser negativo")
         self.side = side
 
     def get_side(self):
@@ -12,7 +12,7 @@ class Square(AbstractPolygon):
 
     def scale(self, percentage):
         if percentage <= 0:
-            raise ValueError("Scale percentage must be positive")
+            raise ValueError("El porcentaje de escalado debe ser positivo")
         self.side *= percentage / 100.0
 
     def clone(self):
