@@ -4,7 +4,7 @@ class Circle(Form2D):
     def __init__(self, position=None, radius=0):
         super().__init__(position)
         if radius < 0:
-            raise ValueError("Radius cannot be negative")
+            raise ValueError("El radio no puede ser negativo")
         self.radius = radius
 
     def get_radius(self):
@@ -12,7 +12,7 @@ class Circle(Form2D):
 
     def scale(self, percentage):
         if percentage <= 0:
-            raise ValueError("Scale percentage must be positive")
+            raise ValueError("El porcentaje de escalado debe ser positivo")
         self.radius *= percentage / 100.0
 
     def clone(self):
