@@ -1,3 +1,4 @@
+# Importar las librerías a utilizar 
 from Circle import Circle
 from Square import Square
 from Rectangle import Rectangle
