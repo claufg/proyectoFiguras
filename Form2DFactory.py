@@ -12,4 +12,4 @@ class Form2DFactory:
         elif form_type == "Rectangle":
             return Rectangle()
         else:
-            raise ValueError("Invalid form type")
+            raise ValueError("Tipo de forma inválida")
